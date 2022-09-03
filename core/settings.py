@@ -9,7 +9,7 @@ class EnvData():
         f'postgresql://{pg_user}:{pg_password}@{pg_server}/{pg_database}'
     )
     ver_prefix = '/v1'
-    server_host = 'http://127.0.0.1:8000'
+    # server_host = 'http://127.0.0.1:8000'
 
 
 env_data = EnvData()

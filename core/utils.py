@@ -30,9 +30,7 @@ def get_current_user(
         payload = jwt.decode(
             token, EnvData.secret, algorithms=[ALGORITHM]
         )
-        # print(payload)
         token_data = TokenPayload(**payload)
-        # print(token_data)
     except (jwt.JWTError, ValidationError):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -55,7 +53,6 @@ def get_current_active_user(
 def get_current_active_superuser(
     current_user: User = Depends(get_current_user),
 ) -> User:
-    # print(current_user.id, current_user.is_superuser, current_user.name)
     if not crud_user.is_superuser(current_user):
         raise HTTPException(
             status_code=400, detail='Пользователь не имеет достаточных прав'
