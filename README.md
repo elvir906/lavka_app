@@ -10,7 +10,7 @@
 Бэкенд приложения регистрации пользователей и привязки к ним бонусных карт. А так же ведение базы маркетинговых акции. CRUD пользователей, карт и промоакций. 
 
 ### Стек технологий:
-Python, FastAPI, SQLAlchemy, Alembic, POstgreSQL, Docker, Swagger
+Python, FastAPI, SQLAlchemy, Alembic, PоstgreSQL, Docker, Swagger
 
 ### Установка:
 1. Клонировать на локальную машину
