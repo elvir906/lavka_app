@@ -1,7 +1,7 @@
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import jwt
-from . settings import EnvData
+from . settings import settings
 
 
 ALGORITHM = 'HS256'
@@ -15,7 +15,7 @@ def create_token(*, data: dict, expires_delta: timedelta = None):
     else:
         expire = datetime.utcnow() + timedelta(minutes=15)
     to_encode.update({'exp': expire, 'sub': access_token_jwt_subject})
-    return jwt.encode(to_encode, EnvData.secret, algorithm=ALGORITHM)
+    return jwt.encode(to_encode, settings.SECRET_KEY, algorithm=ALGORITHM)
 
 
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')

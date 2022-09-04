@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Response, Request
 
-from core.settings import EnvData
+from core.settings import settings
 from core.routers import api_router
 from core.db import SessionLocal
 
 
-app = FastAPI(title=EnvData.project_title)
+app = FastAPI(title=settings.PROJECT_NAME)
 
 
 @app.middleware("http")

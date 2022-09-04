@@ -1,24 +1,24 @@
-class EnvData():
-    project_title = 'Lavka_Delivery'
-    pg_server = 'localhost'
-    pg_user = 'root'
-    pg_password = 'root'
-    pg_database = 'lavka_app_db'
-    secret = 'jd9034th54t7g8f73hd0923jd[0349jtp7hg67fb8c43bv784h'
-    SQLAlchemy_DB_URL = (
-        f'postgresql://{pg_user}:{pg_password}@{pg_server}/{pg_database}'
-    )
-    ver_prefix = '/v1'
-    # server_host = 'http://127.0.0.1:8000'
+from starlette.config import Config
+from starlette.datastructures import Secret
 
-
-env_data = EnvData()
+config = Config('.env')
 
 
 class Settings():
+    PROJECT_NAME = 'Delivery_app'
+    VERSION = '1.0.0'
+    SECRET_KEY = config('SECRET_KEY', cast=Secret, default='CHANGEME')
+    POSTGRES_USER = config('POSTGRES_USER', cast=str)
+    POSTGRES_PASSWORD = config('POSTGRES_PASSWORD', cast=Secret)
+    POSTGRES_SERVER = config('POSTGRES_SERVER', cast=str, default='db')
+    POSTGRES_PORT = config('POSTGRES_PORT', cast=str, default='5432')
+    POSTGRES_DB = config('POSTGRES_DB', cast=str)
+    DATABASE_URL = config(
+      'DATABASE_URL',
+      default=f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}'
+    )
     ACCESS_TOKEN_VALIDITY_MINUTES: int = 60
     USERS_OPEN_REGISTRATION = True
 
-    class Config:
-        case_sensitive = True
-        env_file = '.env'
+
+settings = Settings()

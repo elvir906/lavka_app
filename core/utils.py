@@ -10,7 +10,7 @@ from apps.base.schemas import TokenPayload
 from apps.user.models import User
 from apps.user.crud import crud_user
 from . security import ALGORITHM
-from . settings import EnvData
+from . settings import settings
 
 
 reusable_oauth2 = OAuth2PasswordBearer(
@@ -28,7 +28,7 @@ def get_current_user(
 ) -> User:
     try:
         payload = jwt.decode(
-            token, EnvData.secret, algorithms=[ALGORITHM]
+            token, settings.SECRET_KEY, algorithms=[ALGORITHM]
         )
         token_data = TokenPayload(**payload)
     except (jwt.JWTError, ValidationError):
