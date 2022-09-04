@@ -10,7 +10,7 @@
 Бэкенд приложения регистрации пользователей и привязки к ним бонусных карт. А так же ведение базы маркетинговых акции. CRUD пользователей, карт и промоакций. 
 
 ### Стек технологий:
-Python, FastAPI, SQLAlchemy, Alembic, PоstgreSQL, Docker, Swagger
+Python, FastAPI, SQLAlchemy, Alembic, PоstgreSQL, Uvicorn, Docker, Swagger
 
 ### Установка:
 1. Клонировать на локальную машину
@@ -36,4 +36,15 @@ POSTGRES_SERVER=db # изменить на localhost, если запускае�
 POSTGRES_PORT=5432
 POSTGRES_DB=postgres
 SQLALCHEMY_DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+```
+5. Выполнить миграции
+```
+alembic init migrations
+alembic upgrade head
+alembic revision --autogenerate -m 'your_comment'
+alembic upgrade head
+```
+6. Запустить сервер uvicorn
+```
+uvicorn main:app --reload
 ```
