@@ -7,7 +7,7 @@ config = Config('.env')
 class Settings():
     PROJECT_NAME = 'Delivery_app'
     VERSION = '1.0.0'
-    SECRET_KEY = config('SECRET_KEY', cast=Secret, default='CHANGEME')
+    SECRET_KEY = config.get('SECRET_KEY')
     POSTGRES_USER = config('POSTGRES_USER', cast=str)
     POSTGRES_PASSWORD = config('POSTGRES_PASSWORD', cast=Secret)
     POSTGRES_SERVER = config('POSTGRES_SERVER', cast=str, default='db')

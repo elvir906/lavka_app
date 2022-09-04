@@ -3,6 +3,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 
 from core.utils import get_current_active_superuser, get_db
+from core.security import get_password_hash
 from apps.user.models import User as ModelUser
 from apps.user.schemas import User, UserCreate, UserDelete, UserUpdate
 from apps.user.crud import crud_user
@@ -83,3 +84,20 @@ def update_user(
     if current_user.id == user_in.id or current_user.is_superuser:
         user = crud_user.del_update(db, db_obj=user, obj_in=user_in)
         return user
+
+
+@router.post('/create_superuser/', response_model=User)
+def create_superuseruser(
+    *,
+    db: Session = Depends(get_db),
+    user_in: UserCreate,
+):
+    user = crud_user.get_by_phone(db, phone=user_in.phone)
+    if user:
+        raise HTTPException(
+            status_code=400,
+            detail='Пользователь с таким номером телефона уже существует.',
+        )
+
+    user = crud_user.create(db, obj_in=user_in)
+    return user

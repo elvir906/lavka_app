@@ -30,7 +30,7 @@ class UserCRUD(BaseCRUD[User, UserCreate, UserUpdate]):
             patronymic=obj_in.patronymic,
             phone=obj_in.phone,
             hashed_password=get_password_hash(obj_in.password),
-            is_superuser=False,
+            is_superuser=obj_in.is_superuser,
             is_active=True,
         )
         db.add(db_obj)
