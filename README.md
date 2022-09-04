@@ -26,15 +26,14 @@ source venv/Scripts/activate
 pip install -r requirements.txt
 ```
 4. создать в корне приложения файл .env и указать в ней переменные:
-
+```
 TITLE = Название
 SERVER_HOST = http://0.0.0.0:8000
-
 SECRET_KEY=Секретный ключ
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 POSTGRES_SERVER=db
 POSTGRES_PORT=5432
 POSTGRES_DB=postgres
-
 SQLALCHEMY_DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+```
