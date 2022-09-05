@@ -1,10 +1,11 @@
 from starlette.requests import Request
 from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
 from jose import jwt
 from pydantic import ValidationError
 from sqlalchemy.orm import Session
 from random import randint
+
+from fastapi.security import OAuth2PasswordBearer
 
 from apps.base.schemas import TokenPayload
 from apps.user.models import User

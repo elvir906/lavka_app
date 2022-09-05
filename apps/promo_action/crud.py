@@ -1,4 +1,5 @@
 from typing import Any, Dict, List, Optional, Union
+
 from sqlalchemy.orm import Session
 
 from apps.base.crud import BaseCRUD

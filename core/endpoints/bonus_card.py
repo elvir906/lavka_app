@@ -1,13 +1,14 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 
+from sqlalchemy.orm import Session
 from core.utils import (
     get_current_active_user,
     get_db,
     get_current_active_superuser,
     create_unique_card_code,
 )
+
 from apps.user.models import User as ModelUser
 from apps.bonus_card.schemas import BonusCard, BonusCardCreate, BonusCardUpdate
 from apps.bonus_card.crud import crud_bonus_card

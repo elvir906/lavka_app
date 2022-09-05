@@ -36,7 +36,7 @@ class BonusCardCRUD(
     ) -> List[BonusCard]:
         return db.query(
             BonusCard
-        ).offset(page*page_size).limit(page_size).all()
+        ).offset(page * page_size).limit(page_size).all()
 
     def create(self, db: Session, *, obj_in: BonusCardCreate) -> BonusCard:
         db_obj = BonusCard(

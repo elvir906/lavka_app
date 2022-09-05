@@ -1,11 +1,12 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 
+from sqlalchemy.orm import Session
 from core.utils import (
     get_db,
     get_current_active_superuser
 )
+
 from apps.promo_action.crud import promoaction_crud
 from apps.promo_action.schemas import (
     PromoActionCreate,
