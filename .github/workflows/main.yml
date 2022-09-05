@@ -59,8 +59,8 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/lavka_app
-            sudo docker compose stop
-            sudo docker compose rm backend
+            sudo docker-compose stop
+            sudo docker-compose rm backend
             rm .env
             touch .env
             echo DB_NAME=${{ secrets.POSTGRES_DB }} >> .env
@@ -68,7 +68,7 @@ jobs:
             echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
             echo POSTGRES_SERVER=${{ secrets.POSTGRES_SERVER }} >> .env
             echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env
-            sudo docker compose up -d
+            sudo docker-compose up -d
   telegram_message:
     name: Send telegram message
     runs-on: ubuntu-latest

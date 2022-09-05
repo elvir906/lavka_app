@@ -2,6 +2,7 @@ version: '3.3'
 services:
   backend:
     container_name: backend_container
+    image: davletelvir/lavka_app:latest
     env_file:
       - .env
     ports:
