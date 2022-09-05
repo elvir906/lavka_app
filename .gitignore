@@ -2,3 +2,4 @@ venv/
 .vscode/
 *.ini
 __pycache__
+migrations/
