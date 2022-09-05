@@ -1,5 +1,7 @@
-from pydantic.main import BaseModel
 from typing import Optional
+
+
+from pydantic.main import BaseModel
 
 
 class Token(BaseModel):

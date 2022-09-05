@@ -47,8 +47,8 @@ class PromoActionCRUD(BaseCRUD[
             update_data = obj_in.dict(exclude_unset=True)
         return super().update(db, db_obj=db_obj, obj_in=update_data)
 
-    def is_active(self, Promoution: ModelPromoAction) -> bool:
-        return Promoution.is_active
+    def is_active(self, promoaction: ModelPromoAction) -> bool:
+        return promoaction.is_active
 
     def delete(self, db: Session, *, id: str) -> Optional[ModelPromoAction]:
         db_obj = db.query(ModelPromoAction).get(id)

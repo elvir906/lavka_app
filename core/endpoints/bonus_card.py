@@ -24,7 +24,7 @@ def read_cards_page_pagesize(
 ):
     if current_user.is_superuser:
         card = crud_bonus_card.get_by_id(db, id=card_id)
-        return card
+    return card
 
 
 @router.get('/get_cards/', response_model=List[BonusCard])
@@ -36,7 +36,7 @@ def read_cards(
 ):
     if current_user.is_superuser:
         cards = crud_bonus_card.get_all(db, page=page, page_size=page_size)
-        return cards
+    return cards
 
 
 @router.post('/create_card/', response_model=BonusCard)
@@ -77,7 +77,7 @@ def update_card(
         )
     if current_user.is_superuser:
         card = crud_bonus_card.update(db, db_obj=card, obj_in=card_in)
-        return card
+    return card
 
 
 @router.delete('/delete_card/', response_model=BonusCard)
@@ -95,7 +95,7 @@ def delete_card(
                 detail='Карты с таким пользователем не существует',
             )
         card = crud_bonus_card.delete(db, id=card.id)
-        return card
+    return card
 
 
 @router.get('/get_my/', response_model=BonusCard)

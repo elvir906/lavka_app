@@ -61,6 +61,6 @@ def get_current_active_superuser(
 
 
 def create_unique_card_code(code_lenght):
-    range_start = 10**(code_lenght-1)
-    range_end = (10**code_lenght)-1
+    range_start = 10**(code_lenght - 1)
+    range_end = (10**code_lenght) - 1
     return str(randint(range_start, range_end))

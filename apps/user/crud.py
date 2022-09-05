@@ -1,11 +1,12 @@
-from fastapi.encoders import jsonable_encoder
 from typing import List, Optional
+
+from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
 from core.security import verify_password, get_password_hash
 from apps.base.crud import BaseCRUD
 from .models import User
-from .schemas import UserCreate, UserDB, UserDelete, UserUpdate
+from .schemas import UserCreate, UserDelete, UserUpdate
 
 
 class UserCRUD(BaseCRUD[User, UserCreate, UserUpdate]):
@@ -21,7 +22,7 @@ class UserCRUD(BaseCRUD[User, UserCreate, UserUpdate]):
     def get_multi(
         self, db: Session, *, page: int = 0, page_size: int = 10
     ) -> List[User]:
-        return db.query(User).offset(page*page_size).limit(page_size).all()
+        return db.query(User).offset(page * page_size).limit(page_size).all()
 
     def create(self, db: Session, *, obj_in: UserCreate) -> User:
         db_obj = User(

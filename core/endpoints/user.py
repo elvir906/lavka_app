@@ -1,9 +1,9 @@
 from typing import List
 from fastapi import APIRouter, HTTPException, Depends
-from sqlalchemy.orm import Session
 
+from sqlalchemy.orm import Session
 from core.utils import get_current_active_superuser, get_db
-from core.security import get_password_hash
+
 from apps.user.models import User as ModelUser
 from apps.user.schemas import User, UserCreate, UserDelete, UserUpdate
 from apps.user.crud import crud_user
@@ -19,7 +19,8 @@ def read_user_id(
     current_user: ModelUser = Depends(get_current_active_superuser)
 ):
     if current_user.is_superuser:
-        return crud_user.get_by_id(db, id=user_id)
+        user = crud_user.get_by_id(db, id=user_id)
+    return user
 
 
 @router.get('/get_all_users/', response_model=List[User])
@@ -31,7 +32,7 @@ def read_users_page_sizepage(
 ):
     if current_user.is_superuser:
         users = crud_user.get_multi(db, page=page, page_size=page_size)
-        return users
+    return users
 
 
 @router.post('/create_user/', response_model=User)
@@ -49,7 +50,7 @@ def create_user(
         )
     if current_user.is_superuser:
         user = crud_user.create(db, obj_in=user_in)
-        return user
+    return user
 
 
 @router.delete('/delete_user/', response_model=User)
@@ -69,7 +70,7 @@ def delete_user(
             'is_active': False}
     if current_user.id == user_in.id or current_user.is_superuser:
         user = crud_user.del_update(db, db_obj=user, obj_in=data)
-        return user
+    return user
 
 
 @router.put('/update_user/', response_model=User)
@@ -83,7 +84,7 @@ def update_user(
 
     if current_user.id == user_in.id or current_user.is_superuser:
         user = crud_user.del_update(db, db_obj=user, obj_in=user_in)
-        return user
+    return user
 
 
 @router.post('/create_superuser/', response_model=User)

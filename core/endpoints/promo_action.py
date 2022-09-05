@@ -34,7 +34,7 @@ def create_promoaction(
 ):
     if current_user.is_superuser:
         promoaction = promoaction_crud.create(db, obj_in=promoaction_in)
-        return promoaction
+    return promoaction
 
 
 @router.put('/update_promoaction/', response_model=PromoAction)
@@ -55,8 +55,8 @@ def update_promoaction(
     if current_user.is_superuser:
         promoaction = promoaction_crud.update(
             db, db_obj=promoaction, obj_in=promoaction_in
-            )
-        return promoaction
+        )
+    return promoaction
 
 
 @router.delete('/delete_promoaction/', response_model=PromoAction)
@@ -74,4 +74,4 @@ def delete_promoaction(
         )
     if current_user.is_superuser:
         promoaction = promoaction_crud.delete(db, id=id)
-        return promoaction
+    return promoaction
